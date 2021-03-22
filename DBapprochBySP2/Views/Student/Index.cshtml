@@ -1,0 +1,108 @@
+﻿@model IEnumerable<DBapprochBySP2.Models.SelectStudents_Result>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Index", "Student"))
+{
+<table class="table">
+    <tr>
+        <th>
+            Sr No.
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RollNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Standard)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RollNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Standard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.StudentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
+            </td>
+        </tr>
+    }
+</table>
+
+<table cellpadding="0" cellspacing="0">
+    <tr>
+        @* <td>
+                <a class="pages" href="javascript:Prev()">Prev</a>
+            </td>*@
+        @for (int i = 1; i <= ViewBag.PageCount; i++)
+        {
+            <td>
+                @if (i != ViewBag.CPage)
+                {
+                    <a class="pages" href="javascript:Goto(@i);">@i</a>
+                }
+                else
+                {
+                    <span class="pages">@i</span>
+                }
+            </td>
+        }
+        @*<td><a class="pages" href="javascript:Next();">Next</a></td>*@
+    </tr>
+</table>
+    <input type="hidden" id="curpageidx" name="cPage" />
+}
+<script type="text/javascript">
+    function Prev() {
+
+        var idx = document.getElementById("curpageidx").value;
+
+        if (idx - 1 > 0) {
+            alert(idx);
+            document.getElementById("curpageidx").a = idx - 1;
+            document.forms[0].submit();
+        }
+    }
+    function Goto(index) {
+        document.getElementById("curpageidx").value = index;
+        document.forms[0].submit();
+    }
+    function Next() {
+
+        var idx = document.getElementById("curpageidx").value;
+        alert(idx);
+        if (idx + 1 <=@ViewBag.PageCount) {
+            document.getElementById("curpageidx").value = idx - 1;
+        document.forms[0].submit();
+        }
+    }
+</script>

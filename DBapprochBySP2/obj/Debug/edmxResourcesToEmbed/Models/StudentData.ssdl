@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StudentBySPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RollNo" Type="int" Nullable="false" />
+    <Property Name="Standard" Type="int" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="DelteStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="FindStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="InsertStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentId" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="RollNo" Type="int" Mode="In" />
+    <Parameter Name="Standard" Type="int" Mode="In" />
+    <Parameter Name="City" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SelectStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_pagination" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="bigint" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UpdateStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentId" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="RollNo" Type="int" Mode="In" />
+    <Parameter Name="Standard" Type="int" Mode="In" />
+    <Parameter Name="City" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="StudentBySPModelStoreContainer">
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

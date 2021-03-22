@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StudentBySPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RollNo" Type="int" Nullable="false" />
+          <Property Name="Standard" Type="int" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="DelteStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="FindStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="RollNo" Type="int" Mode="In" />
+          <Parameter Name="Standard" Type="int" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SelectStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_pagination" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="bigint" Mode="In" />
+          <Parameter Name="PageNumber" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="RollNo" Type="int" Mode="In" />
+          <Parameter Name="Standard" Type="int" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="StudentBySPModelStoreContainer">
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StudentBySPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RollNo" Type="Int32" Nullable="false" />
+          <Property Name="Standard" Type="Int32" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="StudentBySPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <FunctionImport Name="DelteStudent">
+          <Parameter Name="StudentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertStudent">
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="RollNo" Mode="In" Type="Int32" />
+            <Parameter Name="Standard" Mode="In" Type="Int32" />
+            <Parameter Name="City" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SelectStudents" ReturnType="Collection(StudentBySPModel.SelectStudents_Result)" />
+          <FunctionImport Name="UpdateStudent">
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="RollNo" Mode="In" Type="Int32" />
+            <Parameter Name="Standard" Mode="In" Type="Int32" />
+            <Parameter Name="City" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="FindStudent" ReturnType="Collection(StudentBySPModel.FindStudent_Result)">
+          <Parameter Name="StudentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_pagination" ReturnType="Collection(StudentBySPModel.sp_pagination_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int64" />
+            <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SelectStudents_Result">
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="RollNo" Nullable="false" />
+          <Property Type="Int32" Name="Standard" Nullable="false" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="FindStudent_Result">
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="RollNo" Nullable="false" />
+          <Property Type="Int32" Name="Standard" Nullable="false" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_pagination_Result">
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="RollNo" Nullable="false" />
+          <Property Type="Int32" Name="Standard" Nullable="false" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StudentBySPModelStoreContainer" CdmEntityContainer="StudentBySPEntities">
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="StudentBySPModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RollNo" ColumnName="RollNo" />
+                <ScalarProperty Name="Standard" ColumnName="Standard" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DelteStudent" FunctionName="StudentBySPModel.Store.DelteStudent" />
+          <FunctionImportMapping FunctionImportName="InsertStudent" FunctionName="StudentBySPModel.Store.InsertStudent" />
+          <FunctionImportMapping FunctionImportName="SelectStudents" FunctionName="StudentBySPModel.Store.SelectStudents">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentBySPModel.SelectStudents_Result">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RollNo" ColumnName="RollNo" />
+                <ScalarProperty Name="Standard" ColumnName="Standard" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateStudent" FunctionName="StudentBySPModel.Store.UpdateStudent" />
+          <FunctionImportMapping FunctionImportName="FindStudent" FunctionName="StudentBySPModel.Store.FindStudent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentBySPModel.FindStudent_Result">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RollNo" ColumnName="RollNo" />
+                <ScalarProperty Name="Standard" ColumnName="Standard" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_pagination" FunctionName="StudentBySPModel.Store.sp_pagination">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StudentBySPModel.sp_pagination_Result">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RollNo" ColumnName="RollNo" />
+                <ScalarProperty Name="Standard" ColumnName="Standard" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StudentBySPModelStoreContainer" CdmEntityContainer="StudentBySPEntities">
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="StudentBySPModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RollNo" ColumnName="RollNo" />
+          <ScalarProperty Name="Standard" ColumnName="Standard" />
+          <ScalarProperty Name="City" ColumnName="City" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="DelteStudent" FunctionName="StudentBySPModel.Store.DelteStudent" />
+    <FunctionImportMapping FunctionImportName="InsertStudent" FunctionName="StudentBySPModel.Store.InsertStudent" />
+    <FunctionImportMapping FunctionImportName="SelectStudents" FunctionName="StudentBySPModel.Store.SelectStudents">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentBySPModel.SelectStudents_Result">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RollNo" ColumnName="RollNo" />
+          <ScalarProperty Name="Standard" ColumnName="Standard" />
+          <ScalarProperty Name="City" ColumnName="City" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UpdateStudent" FunctionName="StudentBySPModel.Store.UpdateStudent" />
+    <FunctionImportMapping FunctionImportName="FindStudent" FunctionName="StudentBySPModel.Store.FindStudent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentBySPModel.FindStudent_Result">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RollNo" ColumnName="RollNo" />
+          <ScalarProperty Name="Standard" ColumnName="Standard" />
+          <ScalarProperty Name="City" ColumnName="City" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_pagination" FunctionName="StudentBySPModel.Store.sp_pagination">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StudentBySPModel.sp_pagination_Result">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RollNo" ColumnName="RollNo" />
+          <ScalarProperty Name="Standard" ColumnName="Standard" />
+          <ScalarProperty Name="City" ColumnName="City" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
